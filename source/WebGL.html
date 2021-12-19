@@ -1,0 +1,110 @@
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cemil TAN</title>
+  </head>
+  <div id="party_on" style="font-size: 40px; color: red"></div>
+  <button id="color" style="background-color: rgb(255, 242, 53)" >
+    <b>Change Color &#127752</b>
+  </button>
+  <button id="rotateLeft" style="background-color: lightskyblue; width: 10%">
+    <b>&#11013 Rotate Left </b>
+  </button>
+  <button id="rotateRight" style="background-color: lightskyblue; width: 10%">
+    <b>Rotate Right &#10145</b>
+  </button>
+  <button id="reset" style="background-color: rgb(207, 67, 67); width: 6.75%">
+    <b>Reset Rotation</b>
+  </button>
+  <br />
+  <br />
+  <button id="refresh" style="background-color: rgb(189, 189, 189); width: 7%;">
+    <b>Reset All</b>
+  </button>
+  <button id="party" >
+    <b>Party Mode (Try ME!!)</b>
+  </button>
+  <button id="dont_touch" >
+    <b>DO &#9940 Touch </b>
+  </button>
+  <br />
+  <br />
+
+  <body style="text-align: center;">
+    <canvas id="glcanvas" width="512" height="512" style="margin:auto; padding: 0%; display: block;  border: 3px solid red;"></canvas>
+  </body>
+
+  <script id="vertex-shader" type="x-shader/x-vertex">
+    attribute vec4 vPosition;
+    uniform float theta;
+
+    void main(){
+      gl_Position.x = cos(theta) * vPosition.x - sin(theta) * vPosition.y;
+      gl_Position.y = sin(theta) * vPosition.x + cos(theta) * vPosition.y;
+      gl_Position.z = 0.0;
+      gl_Position.w = 2.0;
+
+    }
+  </script>
+  <script id="fragment-shader" type="x-shader/x-fragment">
+    precision mediump float;
+    uniform vec4 u_color;
+
+    void main() {
+       gl_FragColor =  u_color;
+    }
+  </script>
+
+  <script src="../common/initShaders.js"></script>
+  <script src="../common/MV.js"></script>
+  <script src="../common/webgl-utils.js"></script>
+  <script src="WebGL.js"></script>
+
+  <div style="color: blueviolet;">
+    <u>X axis</u> <b>-512</b>
+    <input
+      id="Center X"
+      type="range"
+      min="-512"
+      max="512"
+      step="0.1"
+      value="0"
+    />
+    <b>512</b>
+    <pre>You can press <i>"A"</i> and <i>"D"</i> to change X axis</pre>
+  </div>
+  <div style="color: coral" >
+    <u>Y axis</u> <b>-512</b
+    ><input
+      id="Center Y"
+      type="range"
+      min="-512"
+      max="512"
+      step="0.1"
+      value="0"
+    />
+    <b>512</b>
+    <pre>You can press <i>"W"</i> and <i>"S"</i> to change Y axis</pre>
+  </div>
+  <div style="color: teal">
+    <u>Size</u> <b>96</b
+    ><input id="Size" type="range" min="96" max="512" step="24" value="512" />
+    <b>512</b>
+    <pre>You can press <i>"Q"</i> and <i>"E"</i> to change Size</pre>
+  </div>
+  <div style="color: midnightblue">
+    <u>Rotation</u>
+    <pre>
+   You can press <i>"1"</i> and <i>"3"</i> to rotate and you can also press <i>"2"</i> to reset the rotation
+   </pre
+    >
+  </div>
+  <span style="color: rgb(197, 64, 97)">
+    <u>Object Color</u>
+    <pre>
+   You can press <i>"C"</i> to set random color to object
+   </pre
+    >
+  </div>
+</html>
